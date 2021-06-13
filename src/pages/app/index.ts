@@ -8,6 +8,10 @@ class App {
   private static container: HTMLElement = document.body;
   private aboutPage: AboutGame;
 
+  constructor() {
+    this.aboutPage = new AboutGame('about');
+  }
+
   static renderNewPage(id: string) {
     App.container.innerHTML = '';
     let page: Page | null = null;
@@ -36,9 +40,7 @@ class App {
     }
   }
 
-  constructor() {
-    this.aboutPage = new AboutGame('about');
-  }
+  
 
   private routeChangeHandler() {
     window.addEventListener('hashchange', () => {
