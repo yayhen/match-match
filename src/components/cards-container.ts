@@ -10,7 +10,7 @@ class CardsContainer {
     this.container = document.createElement('div');
     this.container.className = 'card-container';
     this.difficunity = difficunity;
-    this.cards = [[]]
+    this.cards = [[]];
   }
 
   addCardsToContainer() {
@@ -19,17 +19,17 @@ class CardsContainer {
     for (let i=0; i<this.difficunity.x; i++) {
       this.cards[i] = [];
       for (let j=0; j<this.difficunity.y; j++) {
-        const card = new Card('card', game.getCard(i, j));
+        const card = new Card('card', game.getCard(i, j), 'row'+i+'collumn'+j);
         this.cards[i][j] = card;
         this.container.append(card.render());
       }
     }
   }
 
-  addCardStyle(x: number, y: number, newStyle: string) {
-    const card = new Card(newStyle, 0);
-    this.cards[x][y] = card;
-  }
+  // addCardStyle(x: number, y: number, newStyle: string) {
+  //   const card = new Card(newStyle, 0, 'row'+x+'collumn'+y);
+  //   this.cards[x][y] = card;
+  // }
 
   render() {
     this.cards.forEach((item) => {

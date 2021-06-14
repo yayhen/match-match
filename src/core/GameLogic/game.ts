@@ -30,7 +30,6 @@ class Game {
   }
 
   getCard(x: number, y: number) {
-    console.log(this.gameField)
     return this.gameField[x][y];
   }
 }
