@@ -1,3 +1,7 @@
+a {
+  margin: 10px;
+}
+
 .card-container {
   /* width: 1000px; */
   /* height: 100%; */
@@ -11,4 +15,20 @@
   display: inline-block;
   margin: 15px;
   line-height: 75px;
+}
+
+.congradulation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: darkcyan;
+}
+
+.timer {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  background: darkcyan;
+  color: white;
 }
