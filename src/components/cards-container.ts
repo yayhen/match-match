@@ -8,6 +8,7 @@ class CardsContainer {
   private cards: Card [][];
   private difficunity: {x: number, y: number};
   private timer: Timer;
+  public game: Game;
 
   constructor(difficunity: {x: number, y: number}) { //difficunity is dimension of game field.
     // Object consist of properties x and y (numbers of cards in vertical and horizontal axes)
@@ -15,17 +16,20 @@ class CardsContainer {
     this.container.className = 'card-container';
     this.difficunity = difficunity;
     this.cards = [[]];
-    this.timer = new Timer();
+    this.timer = new Timer(this);
     this.container.append(this.timer.render());
+    this.game = new Game({x: 4, y: 4});
   }
 
   addCardsToContainer() {
     let game = new Game({x: 4, y: 4});
     game.fillRandomCardsInTable();
+    game.visibleAllCards();
+    this.game = game;
     for (let i=0; i<this.difficunity.x; i++) {
       this.cards[i] = [];
       for (let j=0; j<this.difficunity.y; j++) {
-        const card = new Card('card', game.getCard(i, j), 'row'+i+'collumn'+j, game, {i, j}, this);
+        const card = new Card(game.getCard(i, j), 'row'+i+'collumn'+j, game, {i, j}, this);
         this.cards[i][j] = card;
         this.container.append(card.render());
       }
@@ -33,21 +37,23 @@ class CardsContainer {
   }
 
   public refresh(game: Game) {
-    console.log('game.openedCards:', game.openedCards);
+    let cardsToRefresh: Card[];
+    cardsToRefresh = [];
+
     for (let i=0; i<this.difficunity.x; i++) {
-      this.cards[i] = [];
       for (let j=0; j<this.difficunity.y; j++) {
-        const card = new Card('card', game.getCard(i, j), 'row'+i+'collumn'+j, game, {i, j}, this);
-        this.cards[i][j] = card;
-        this.container.append(card.render());
+        if(game.openedCards[i][j]==false) {
+          const card = new Card(game.getCard(i, j), 'row'+i+'collumn'+j, game, {i, j}, this);
+          cardsToRefresh.push(card);
+        }
       }
     }
-    this.container = document.createElement('div');
-    this.container.className = 'card-container';
-    this.render();
-    let elementToReplace = document.getElementsByClassName('card-container');
-    elementToReplace[0]?.replaceWith(this.container);
-    this.container.append(this.timer.render());
+
+    cardsToRefresh.forEach((item) => {
+      let pidor = document.getElementById(item.cardId);
+      pidor?.replaceWith(item.render());
+    });
+
     let winGameCheck: boolean = true;
       for(let i=0; i<game.openedCards.length; i++) {
         for(let j=0; j<game.openedCards[0].length; j++) {
@@ -70,9 +76,8 @@ class CardsContainer {
       this.container.append(newRow);
       item.forEach(itm =>{
         this.container.append(itm.render());
-      })
-
-    })
+      });
+    });
     return this.container;
   }
 }
