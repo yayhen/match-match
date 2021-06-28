@@ -1,4 +1,5 @@
 import Game from "../core/GameLogic/game";
+import Database from "../core/gatabase/database";
 import Card from "./card";
 import Congradulation from "./congradulation";
 import Timer from "./timer";
@@ -18,11 +19,11 @@ class CardsContainer {
     this.cards = [[]];
     this.timer = new Timer(this);
     this.container.append(this.timer.render());
-    this.game = new Game({x: 4, y: 4});
+    this.game = new Game({x: 2, y: 2});
   }
 
   addCardsToContainer() {
-    let game = new Game({x: 4, y: 4});
+    let game = new Game({x: 2, y: 2});
     game.fillRandomCardsInTable();
     game.visibleAllCards();
     this.game = game;

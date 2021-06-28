@@ -1,3 +1,5 @@
+import Database from "../core/gatabase/database";
+
 class Congradulation {
   private container: HTMLElement;
   constructor(score: number) {
@@ -9,8 +11,7 @@ class Congradulation {
     buttonOK.onclick = () => {
       let modalClose = document.getElementsByClassName('congradulation');
       modalClose[0].remove();
-      console.log('OK');
-      
+      Database.openDatabase(score);
     }
     this.container.append(buttonOK);
   }
