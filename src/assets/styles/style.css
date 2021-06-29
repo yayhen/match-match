@@ -32,3 +32,24 @@ a {
   background: darkcyan;
   color: white;
 }
+
+.new-user-modal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: darkcyan;
+}
+
+.new-user-modal input{
+  display: block;
+  margin: 10px;
+}
+
+.new-user-modal__submit-button_inactive {
+  background-color: gray;
+}
+
+.new-user-modal__submit-button_active {
+  background-color: forestgreen;
+}

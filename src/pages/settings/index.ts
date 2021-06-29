@@ -5,6 +5,7 @@ class Settings extends Page {
     super(id)
   }
 
+
   render() {
     const header = this.createHeader('Settings');
     const main = this.createMain('settings of game');
