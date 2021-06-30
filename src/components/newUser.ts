@@ -1,4 +1,5 @@
 import Database from "../core/gatabase/database";
+import App from "../pages/app";
 
 class NewUser {
   private container: HTMLElement;
@@ -96,8 +97,19 @@ class NewUser {
     submitButton.className = 'new-user-modal__submit-button_inactive';
     submitButton.onclick = (e) => {
       if(this.correctAllInputsCheck()) {
-        Database.addNewPlayer(this.newUserData)
-      } 
+        Database.addNewPlayer({
+          firstName: this.newUserData.firstName,
+          lastName: this.newUserData.lastName,
+          email: this.newUserData.email
+        });
+      }
+      App.gameSettings.setCurrentPlayer({
+        firstName: this.newUserData.firstName,
+        lastName: this.newUserData.lastName,
+        email: this.newUserData.email
+      });
+      App.gameSettings.setGameEnabled(true);
+      App.renderNewPage('about');
     }
 
     this.newUserData = {

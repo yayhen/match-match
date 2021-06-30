@@ -1,3 +1,4 @@
+import GameSettings from '../../core/GameLogic/GameSettings';
 import Page from '../../core/templates/page';
 import BestScores from '../best-score';
 import Game from '../game';
@@ -7,6 +8,7 @@ import AboutGame from './../about'
 class App {
   private static container: HTMLElement = document.body;
   private aboutPage: AboutGame;
+  public static gameSettings: GameSettings = new GameSettings();
 
   constructor() {
     this.aboutPage = new AboutGame('about');

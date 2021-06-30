@@ -48,6 +48,7 @@ a {
 
 .new-user-modal__submit-button_inactive {
   background-color: gray;
+  opacity: 0.2;
 }
 
 .new-user-modal__submit-button_active {

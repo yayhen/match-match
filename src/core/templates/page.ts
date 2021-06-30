@@ -1,3 +1,5 @@
+import App from "../../pages/app";
+
 abstract class Page {
   protected container: HTMLElement;
 
@@ -15,21 +17,36 @@ abstract class Page {
     const linkGame = document.createElement('a');
     linkGame.innerText = 'game';
     linkGame.href = '#game';
-    header.append(linkGame);
+    if(text === 'Game') {
+      linkGame.style.background = 'green';
+    }
+    if(App.gameSettings.getGameEnabled()) {
+      header.append(linkGame);
+    }
+    //header.append(linkGame);
 
     const linkSettings = document.createElement('a');
     linkSettings.innerText = 'settings';
     linkSettings.href = '#settings';
+    if(text === 'Settings') {
+      linkSettings.style.background = 'green';
+    }
     header.append(linkSettings);
 
     const linkBestScores = document.createElement('a');
     linkBestScores.innerText = 'Best scores';
     linkBestScores.href = '#best-scores';
+    if(text === 'Best scores') {
+      linkBestScores.style.background = 'green';
+    }
     header.append(linkBestScores);
 
     const linkAbout = document.createElement('a');
     linkAbout.innerText = 'About';
     linkAbout.href = '#about';
+    if(text === 'About game') {
+      linkAbout.style.background = 'green';
+    }
     header.append(linkAbout);
 
     return header;

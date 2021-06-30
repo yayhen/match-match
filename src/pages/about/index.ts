@@ -14,12 +14,13 @@ class AboutGame extends Page {
       let newUser = new NewUser();
       this.container.append(newUser.render());
     }
+    mainText.append(text);
     mainText.append(newUserButton);
     return mainText;
   }
 
   render() {
-    const header = this.createHeader('About Game');
+    const header = this.createHeader('About game');
     const textAbout: string = 'The playing field consists of cards with different patterns on the back.  \
     Before the start of the game session, the player is shown the location of all paired cards, after 30 seconds they are hidden. \
     The victory is counted when all pairs of cards are found.'
