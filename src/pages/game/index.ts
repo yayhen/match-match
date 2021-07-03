@@ -1,4 +1,5 @@
 import CardsContainer from '../../components/cards-container';
+import App from '../app';
 import Page from './../../core/templates/page'
 
 class Game extends Page {
@@ -9,7 +10,7 @@ class Game extends Page {
   render() {
     const header = this.createHeader('Game');
     const main = this.createMain('good luck!');
-    const cardsContainer = new CardsContainer({x:2, y: 2});
+    const cardsContainer = new CardsContainer({x: App.gameSettings.getDifficunity(), y: App.gameSettings.getDifficunity()});
     cardsContainer.addCardsToContainer();
     main.append(cardsContainer.render());
     const footer = this.createFooter('powered by my');

@@ -1,4 +1,6 @@
+import GameSettings from "../core/GameLogic/GameSettings";
 import Database from "../core/gatabase/database";
+import App from "../pages/app";
 
 class Congradulation {
   private container: HTMLElement;
@@ -11,7 +13,8 @@ class Congradulation {
     buttonOK.onclick = () => {
       let modalClose = document.getElementsByClassName('congradulation');
       modalClose[0].remove();
-      Database.openDatabase(score);
+      Database.recordScore(App.gameSettings.getCurrentPlayer(), score);
+      window.location.hash = 'best-scores'
     }
     this.container.append(buttonOK);
   }

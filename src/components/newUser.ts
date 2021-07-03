@@ -24,6 +24,7 @@ class NewUser {
     firstNameInput.oninput = (e) => {
       const target = e.target as HTMLTextAreaElement;
       if(this.fistNameCheck(target.value)===true) {
+        firstNameInput.className = 'new-user-modal__first-name_valid';
         this.newUserData.firstName = target.value;
         this.newUserData.correctFormCheck.firstName = true;
         if(this.correctAllInputsCheck()) {
@@ -37,6 +38,7 @@ class NewUser {
         }
       } else {
         this.newUserData.correctFormCheck.firstName = false;
+        firstNameInput.className = 'new-user-modal__first-name_invalid';
         let submitButton = document.getElementById('submit-button');
           submitButton?.classList.remove('new-user-modal__submit-button_active');
           submitButton?.classList.add('new-user-modal__submit-button_inactive');
@@ -51,6 +53,7 @@ class NewUser {
       if(this.lastNameCheck(target.value)===true) {
         this.newUserData.lastName = target.value;
         this.newUserData.correctFormCheck.lastName = true;
+        lastNameInput.className = 'new-user-modal__last-name_valid';
         if(this.correctAllInputsCheck()) {
           let submitButton = document.getElementById('submit-button');
           submitButton?.classList.remove('new-user-modal__submit-button_inactive');
@@ -62,6 +65,7 @@ class NewUser {
         }
       } else {
         this.newUserData.correctFormCheck.lastName = false;
+        lastNameInput.className = 'new-user-modal__last-name_invalid';
         submitButton?.classList.remove('new-user-modal__submit-button_active');
         submitButton?.classList.add('new-user-modal__submit-button_inactive');
       }
@@ -75,6 +79,7 @@ class NewUser {
       if(this.emailCheck(target.value)===true) {
         this.newUserData.email = target.value;
         this.newUserData.correctFormCheck.email = true;
+        emailInput.className = 'new-user-modal__email_valid';
         if(this.correctAllInputsCheck()) {
           let submitButton = document.getElementById('submit-button');
           submitButton?.classList.remove('new-user-modal__submit-button_inactive');
@@ -86,6 +91,7 @@ class NewUser {
         }
       } else {
         this.newUserData.correctFormCheck.email = false;
+        emailInput.className = 'new-user-modal__email_invalid';
         submitButton?.classList.remove('new-user-modal__submit-button_active');
         submitButton?.classList.add('new-user-modal__submit-button_inactive');
       }

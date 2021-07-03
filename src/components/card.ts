@@ -1,12 +1,32 @@
 import Game from "../core/GameLogic/game";
+import App from "../pages/app";
 import CardsContainer from "./cards-container";
+import Filter from "./filter";
 
 const animalImagesUrl = require('../assets/images/animals.jpg').default
-const animalImagesPosition = {
-  imageWidth: 100,
-  imageHight: 116,
-  imagesInRow: 12,
-}
+const girlImagesUrl = require('../assets/images/girls.jpg').default
+const memImagesUrl = require('../assets/images/mems.jpg').default
+
+const packList = [
+  {
+    name: 'animals',
+    imageWidth: 100,
+    imageHight: 116,
+    imagesInRow: 12,
+  },
+  {
+    name: 'girls', 
+    imageWidth: 178,
+    imageHight: 171,
+    imagesInRow: 5,
+  },
+  {
+    name: 'mems', 
+    imageWidth: 72,
+    imageHight: 72,
+    imagesInRow: 7,
+  },
+]
 
 class Card {
   private container: HTMLElement;
@@ -16,6 +36,8 @@ class Card {
   private game: Game;
   private cardPosition: {i:number, j: number};
   private cardsContainer: CardsContainer;
+  private imageUrl: string;
+  private packNumber: number;
 
   constructor(imageNumber: number, 
               id: string, 
@@ -24,7 +46,24 @@ class Card {
               cardsContainer: CardsContainer) {
     this.cardId = id;
     this.imageNumber = imageNumber;
-    this.container = document.createElement('div'); 
+    this.container = document.createElement('div');
+    switch (App.gameSettings.getImagesPack()) {
+      case 'animals':
+        this.imageUrl = animalImagesUrl;
+        this.packNumber = 0;
+        break;
+      case 'girls':
+        this.imageUrl = girlImagesUrl;
+        this.packNumber = 1;
+        break;
+      case 'mems':
+        this.imageUrl = memImagesUrl;
+        this.packNumber = 2;
+        break;
+      default:
+        this.imageUrl = animalImagesUrl;
+        this.packNumber = 0;
+    }
     this.makeKardImageVisible();
     this.openedCard = true; 
     this.game = game;
@@ -33,7 +72,7 @@ class Card {
     if(game.openedCards[cardPosition.i][cardPosition.j]===false) {
       this.openedCard = false;
       this.makeCardImageInvisible();
-    }    
+    }
   }
 
   makeKardImageVisible(): void {
@@ -41,14 +80,14 @@ class Card {
     this.container.className = 'card';
     this.container.id = this.cardId;
     let canvas = document.createElement('canvas');
-    const imageWidth = animalImagesPosition.imageWidth;
-    const imageHight = animalImagesPosition.imageHight;
-    const imagesInRow = animalImagesPosition.imagesInRow;
-    canvas.width = imageWidth;
-    canvas.height = imageHight;
+    const imageWidth = packList[this.packNumber].imageWidth;
+    const imageHight = packList[this.packNumber].imageHight;
+    const imagesInRow = packList[this.packNumber].imagesInRow;
+    canvas.width = 100;
+    canvas.height = 115;
     const ctx = canvas.getContext('2d');
     const image = document.createElement('img');
-    image.src = animalImagesUrl;
+    image.src = this.imageUrl;
     let offsetX: number = 0;
     let offsetY: number = 0;
     if (this.imageNumber>imagesInRow) {
@@ -62,7 +101,7 @@ class Card {
       offsetX = imageWidth*(this.imageNumber-1);
     }
     image.addEventListener('load', () => {
-      ctx?.drawImage(image, offsetX, offsetY, imageWidth, imageHight, 0, 0, imageWidth, imageHight);
+      ctx?.drawImage(image, offsetX, offsetY, imageWidth, imageHight, 0, 0, 100, 115);
     })
     this.container.append(canvas);
     let cardToInvisible = document.getElementById(this.cardId);
@@ -77,16 +116,16 @@ class Card {
     this.container.className = 'card';
     this.container.id = this.cardId;
     let canvas = document.createElement('canvas');
-    const imageWidth = animalImagesPosition.imageWidth;
-    const imageHight = animalImagesPosition.imageHight;
-    const imagesInRow = animalImagesPosition.imagesInRow;
-    canvas.width = imageWidth;
-    canvas.height = imageHight;
+    const imageWidth = packList[this.packNumber].imageWidth;
+    const imageHight = packList[this.packNumber].imageHight;
+    const imagesInRow = packList[this.packNumber].imagesInRow;
+    canvas.width = 100;
+    canvas.height = 115;
     const ctx = canvas.getContext('2d');
     const image = document.createElement('img');
-    image.src = animalImagesUrl;
+    image.src = this.imageUrl;
     image.addEventListener('load', () => {
-      ctx?.drawImage(image, -250, -250, imageWidth, imageHight, 0, 0, imageWidth, imageHight);
+      ctx?.drawImage(image, -250, -250, imageWidth, imageHight, 0, 0, 100, 115);
     })
     this.container.append(canvas);
     cardToInvisible?.replaceWith(this.container);
@@ -130,6 +169,10 @@ class Card {
           this.game.winCards[cardOpenPosition.x][cardOpenPosition.y] = true;
         } else {
           this.game.incorrectCompares += 1;
+          let card = document.getElementById(this.cardId);
+          card?.appendChild(Filter.redFilter());
+          card = document.getElementById('row'+cardOpenPosition.x+'collumn'+cardOpenPosition.y);
+          card?.appendChild(Filter.redFilter());
           setTimeout(() => {
             this.game.invisibleAllExceptWinCards();
             this.cardsContainer.refresh(this.game);

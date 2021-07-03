@@ -9,6 +9,7 @@ a {
 }
 
 .card {
+  position: relative;
   width: 100px;
   height: 115px;
   border: 2px solid white; 
@@ -44,6 +45,30 @@ a {
 .new-user-modal input{
   display: block;
   margin: 10px;
+}
+
+.new-user-modal__first-name_valid {
+  border: 3px solid darkgreen;
+}
+
+.new-user-modal__first-name_invalid {
+  border: 3px solid darkred;
+}
+
+.new-user-modal__last-name_valid {
+  border: 3px solid darkgreen;
+}
+
+.new-user-modal__last-name_invalid {
+  border: 3px solid darkred;
+}
+
+.new-user-modal__email_valid {
+  border: 3px solid darkgreen;
+}
+
+.new-user-modal__email_invalid {
+  border: 3px solid darkred;
 }
 
 .new-user-modal__submit-button_inactive {

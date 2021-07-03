@@ -47,7 +47,7 @@ class GameSettings {
     this.currentPlayer = player;
   }
 
-  getCurrentPlayer(): {} {
+  getCurrentPlayer() {
     return this.currentPlayer;
   }
 }
