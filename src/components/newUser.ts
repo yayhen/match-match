@@ -1,5 +1,6 @@
 import Database from "../core/gatabase/database";
 import App from "../pages/app";
+import Filter from "./filter";
 
 class NewUser {
   private container: HTMLElement;
@@ -15,8 +16,13 @@ class NewUser {
   }
 
   constructor() {
+    document.body.append(Filter.grayFilter());
     this.container = document.createElement('div');
     this.container.className = 'new-user-modal';
+
+    let head = document.createElement('h3');
+    head.innerText = 'Registr new Player';
+    this.container.append(head);
 
     let firstNameInput = document.createElement('input');
     firstNameInput.className = 'new-user-modal__first-name'
@@ -98,7 +104,7 @@ class NewUser {
     }
 
     let submitButton = document.createElement('button');
-    submitButton.innerText = 'Add user';
+    submitButton.innerText = 'ADD USER';
     submitButton.id = 'submit-button'
     submitButton.className = 'new-user-modal__submit-button_inactive';
     submitButton.onclick = (e) => {
@@ -118,6 +124,14 @@ class NewUser {
       App.renderNewPage('about');
     }
 
+    let cancelButton = document.createElement('button');
+    cancelButton.className = 'cancel-button';
+    cancelButton.innerText = 'CANCEL';
+    cancelButton.onclick = (e) => {
+      App.renderNewPage('about');
+    };
+
+
     this.newUserData = {
       firstName: '',
       lastName: '',
@@ -129,7 +143,7 @@ class NewUser {
       }
     }
 
-    this.container.append(firstNameInput, lastNameInput, emailInput, submitButton);
+    this.container.append(firstNameInput, lastNameInput, emailInput, submitButton, cancelButton);
   }
 
   fistNameCheck(text: string): boolean {

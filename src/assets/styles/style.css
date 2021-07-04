@@ -1,4 +1,139 @@
+header {
+  background: DodgerBlue;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.header-logo {
+  margin-left: 20px;
+  margin-top: 10px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 50px;
+}
+
+.header-logo__up {
+  background: dodgerblue;
+  color: white;
+  text-align: center;
+}
+
+.header-logo__down {
+  background: white;
+  color: dodgerblue;
+  text-align: center;
+}
+
+.settings-logo {
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  color: dodgerblue;
+  background: white;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.best-scores-logo {
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  color: dodgerblue;
+  background: white;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.about-logo {
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  color: dodgerblue;
+  background: white;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.links {
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
 a {
+  margin-left: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+main {
+  width: 1000px;
+  margin-left: 200px;
+  margin-bottom: 50px;
+  padding: 50px;
+  background: Gainsboro;
+  color: DarkSlateGrey;
+}
+
+.how-to-play {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.how-to-play__description {
+  background: white;
+}
+
+.how-to-play__par {
+  text-align: center;
+  background: dodgerblue;
+  color: white;
+  display: inline-block;
+  font-size: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.how-to-play__text {
+  margin-top: 5px;
+  padding-top: 5px;
+  display: inline-block;
+  width: 400px;
+  vertical-align: top;
+}
+
+.new-user-button {
+  color: dodgerblue;
+  box-shadow:  0 0 10px rgba(0,0,0,0.5);
   margin: 10px;
 }
 
@@ -35,11 +170,21 @@ a {
 }
 
 .new-user-modal{
+  padding: 40px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: darkcyan;
+  background: white;
+  width: 50vw;
+  height: fit-content;
+  z-index: 4;
+  border-radius: 5px;
+  box-shadow:  0 0 10px rgba(0,0,0,0.5);
+}
+
+input {
+  border-radius: 10px;
 }
 
 .new-user-modal input{
@@ -47,35 +192,78 @@ a {
   margin: 10px;
 }
 
+.new-user-modal__first-name {
+  background: gainsboro;
+  height: 30px;
+}
+
 .new-user-modal__first-name_valid {
+  background: gainsboro;
+  height: 30px;
   border: 3px solid darkgreen;
 }
 
 .new-user-modal__first-name_invalid {
+  background: gainsboro;
   border: 3px solid darkred;
+  height: 30px;
+}
+
+.new-user-modal__last-name {
+  background: gainsboro;
+  height: 30px;
 }
 
 .new-user-modal__last-name_valid {
+  background: gainsboro;
   border: 3px solid darkgreen;
+  height: 30px;
 }
 
 .new-user-modal__last-name_invalid {
+  background: gainsboro;
   border: 3px solid darkred;
+  height: 30px;
+}
+
+.new-user-modal__email {
+  background: gainsboro;
+  height: 30px;
 }
 
 .new-user-modal__email_valid {
+  background: gainsboro;
   border: 3px solid darkgreen;
+  height: 30px;
 }
 
 .new-user-modal__email_invalid {
+  background: gainsboro;
   border: 3px solid darkred;
+  height: 30px;
 }
 
 .new-user-modal__submit-button_inactive {
-  background-color: gray;
+  background-color: dodgerblue;
+  color: white;
   opacity: 0.2;
+  height: 30px;
+  border-radius: 5px;
+  margin: 10px;
 }
 
 .new-user-modal__submit-button_active {
-  background-color: forestgreen;
+  background-color: dodgerblue;
+  height: 30px;
+  color: white;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.cancel-button {
+  background-color: white;
+  height: 30px;
+  color: dodgerblue;
+  border-radius: 5px;
+  margin: 10px;
 }

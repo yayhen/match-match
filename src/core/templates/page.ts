@@ -1,3 +1,4 @@
+import NewUser from "../../components/newUser";
 import App from "../../pages/app";
 
 abstract class Page {
@@ -9,45 +10,78 @@ abstract class Page {
   }
 
   protected createHeader(text: string) {
-    const header = document.createElement('header');
-    const headerTitle = document.createElement('h3');
-    headerTitle.innerText = text;
-    header.append(headerTitle);
+    let header = document.createElement('header');
+    let headerLogo = document.createElement('div');
+    headerLogo.className = 'header-logo';
+    let headerLogoUp = document.createElement('div');
+    headerLogoUp.className = 'header-logo__up';
+    headerLogoUp.innerText = 'MATCH';
+    let headerLogoDown = document.createElement('div');
+    headerLogoDown.className = 'header-logo__down';
+    headerLogoDown.innerText = 'MATCH';
+    headerLogo.append(headerLogoUp, headerLogoDown);
+    header.append(headerLogo);
+
+    let linksContainer = document.createElement('div');
+    linksContainer.className = 'links';
+
 
     const linkGame = document.createElement('a');
     linkGame.innerText = 'game';
     linkGame.href = '#game';
     if(text === 'Game') {
-      linkGame.style.background = 'green';
+      linkGame.style.background = 'SteelBlue';
     }
     if(App.gameSettings.getGameEnabled()) {
-      header.append(linkGame);
+      linksContainer.append(linkGame);
     }
-    //header.append(linkGame);
 
     const linkSettings = document.createElement('a');
-    linkSettings.innerText = 'settings';
+    let settingsLogo = document.createElement('div');
+    settingsLogo.className = 'settings-logo';
+    settingsLogo.innerHTML = '&#9881;'
+    linkSettings.append(settingsLogo);
+    linkSettings.append('Game Settings');
     linkSettings.href = '#settings';
     if(text === 'Settings') {
-      linkSettings.style.background = 'green';
+      linkSettings.style.background = 'SteelBlue';
     }
-    header.append(linkSettings);
+    linksContainer.append(linkSettings);
 
     const linkBestScores = document.createElement('a');
-    linkBestScores.innerText = 'Best scores';
+    let bestScoresLogo = document.createElement('div');
+    bestScoresLogo.className = 'best-scores-logo';
+    bestScoresLogo.innerHTML = '&#9733;'
+    linkBestScores.append(bestScoresLogo);
+    linkBestScores.append('Best Score');
     linkBestScores.href = '#best-scores';
     if(text === 'Best scores') {
-      linkBestScores.style.background = 'green';
+      linkBestScores.style.background = 'SteelBlue';
     }
-    header.append(linkBestScores);
+    linksContainer.append(linkBestScores);
 
     const linkAbout = document.createElement('a');
-    linkAbout.innerText = 'About';
+    let aboutLogo = document.createElement('div');
+    aboutLogo.className = 'about-logo';
+    aboutLogo.innerHTML = '?';
+    linkAbout.append(aboutLogo, 'About Game');
     linkAbout.href = '#about';
     if(text === 'About game') {
-      linkAbout.style.background = 'green';
+      linkAbout.style.background = 'SteelBlue';
     }
-    header.append(linkAbout);
+    linksContainer.append(linkAbout);
+
+    header.append(linksContainer);
+    
+    let newUserButton = document.createElement('button');
+    newUserButton.className = 'new-user-button';
+    newUserButton.innerText = 'REGISTER NEW PLAYER'
+    newUserButton.onclick = () => {
+      let newUser = new NewUser();
+      this.container.append(newUser.render());
+    }
+
+    header.append(newUserButton);
 
     return header;
   }

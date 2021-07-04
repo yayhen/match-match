@@ -167,6 +167,10 @@ class Card {
         if (firstCardOpened === secondCardOpened) {
           this.game.winCards[this.cardPosition.i][this.cardPosition.j] = true;
           this.game.winCards[cardOpenPosition.x][cardOpenPosition.y] = true;
+          let card = document.getElementById(this.cardId);
+          card?.appendChild(Filter.greenFilter());
+          card = document.getElementById('row'+cardOpenPosition.x+'collumn'+cardOpenPosition.y);
+          card?.appendChild(Filter.greenFilter());
         } else {
           this.game.incorrectCompares += 1;
           let card = document.getElementById(this.cardId);
