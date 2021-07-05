@@ -43,7 +43,7 @@ class CardsContainer {
 
     for (let i=0; i<this.difficunity.x; i++) {
       for (let j=0; j<this.difficunity.y; j++) {
-        if(game.openedCards[i][j]==false) {
+        if(game.openedCards[i][j]===false && document.getElementById('row'+i+'collumn'+j)?.getAttribute('state')==='opened') {
           const card = new Card(game.getCard(i, j), 'row'+i+'collumn'+j, game, {i, j}, this);
           cardsToRefresh.push(card);
         }
@@ -51,8 +51,8 @@ class CardsContainer {
     }
 
     cardsToRefresh.forEach((item) => {
-      let pidor = document.getElementById(item.cardId);
-      pidor?.replaceWith(item.render());
+      let card = document.getElementById(item.cardId);
+      card?.replaceWith(item.render());
     });
 
     let winGameCheck: boolean = true;

@@ -30,7 +30,7 @@ class Filter {
     container.style.zIndex = '2';
     container.style.background = 'rgba(0, 0, 0, .3)';
     container.style.width = '100%';
-    container.style.height = '100%';
+    container.style.height = '150%';
     container.style.top = '0px';
     container.style.left = '0px';
     return container;

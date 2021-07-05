@@ -8,6 +8,9 @@ class Settings extends Page {
 
   protected createMain(text: string) {
     const mainText = document.createElement('main');
+    let head = document.createElement('h3');
+    head.innerText = 'Game cards';
+    mainText.append(head);
     let difficunitySelect = document.createElement('select');
     difficunitySelect.className = 'difficunity-select';
     let difficunitySelect_4on4 = document.createElement('option');
@@ -21,7 +24,11 @@ class Settings extends Page {
     difficunitySelect_8on8.value = '8';
     difficunitySelect.append(difficunitySelect_4on4, difficunitySelect_6on6, difficunitySelect_8on8);
     
+    mainText.append(difficunitySelect);
 
+    let head2 = document.createElement('h3');
+    head2.innerText = 'Difficunity';
+    mainText.append(head2);
     let cardPackSelect = document.createElement('select');
     cardPackSelect.className = 'card-pack-select';
     let packAnimals = document.createElement('option');
@@ -43,15 +50,15 @@ class Settings extends Page {
       App.gameSettings.setDifficunity(parseInt(difficunitySelect.value));
       App.gameSettings.setImagesPack(cardPackSelect.value);
     }
-    mainText.append(difficunitySelect, cardPackSelect, saveOptionButton);
+    mainText.append(cardPackSelect, saveOptionButton);
     return mainText;
   }
 
   render() {
     const header = this.createHeader('Settings');
     const main = this.createMain('settings of game');
-    const footer = this.createFooter('powered by my');
-    this.container.append(header, main, footer);
+    //const footer = this.createFooter('powered by my');
+    this.container.append(header, main);
     return this.container;
   }
 }

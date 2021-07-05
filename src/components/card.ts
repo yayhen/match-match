@@ -1,4 +1,5 @@
 import Game from "../core/GameLogic/game";
+import GameSettings from "../core/GameLogic/GameSettings";
 import App from "../pages/app";
 import CardsContainer from "./cards-container";
 import Filter from "./filter";
@@ -6,6 +7,7 @@ import Filter from "./filter";
 const animalImagesUrl = require('../assets/images/animals.jpg').default
 const girlImagesUrl = require('../assets/images/girls.jpg').default
 const memImagesUrl = require('../assets/images/mems.jpg').default
+const topCard = require('../assets/images/noneCard.png').default
 
 const packList = [
   {
@@ -79,7 +81,26 @@ class Card {
     this.container = document.createElement('div');
     this.container.className = 'card';
     this.container.id = this.cardId;
+    this.container.setAttribute('state', 'opened');
     let canvas = document.createElement('canvas');
+    switch (App.gameSettings.getDifficunity()) {
+      case 4:
+        canvas.className = 'canvas-4-4';
+        this.container.className = 'card-4-4';
+        break
+      case 6:
+        canvas.className = 'canvas-6-6';
+        this.container.className = 'card-6-6';
+        break;
+      case 8:
+        canvas.className = 'canvas-8-8';
+        this.container.className = 'card-8-8';
+        break;
+      default:
+        canvas.className = 'canvas-4-4';
+        this.container.className = 'card-4-4';
+        break;
+    }
     const imageWidth = packList[this.packNumber].imageWidth;
     const imageHight = packList[this.packNumber].imageHight;
     const imagesInRow = packList[this.packNumber].imagesInRow;
@@ -115,17 +136,36 @@ class Card {
     this.container = document.createElement('div');
     this.container.className = 'card';
     this.container.id = this.cardId;
+    this.container.setAttribute('state', 'closed');
     let canvas = document.createElement('canvas');
+    switch (App.gameSettings.getDifficunity()) {
+      case 4:
+        canvas.className = 'canvas-4-4';
+        this.container.className = 'card-4-4';
+        break
+      case 6:
+        canvas.className = 'canvas-6-6';
+        this.container.className = 'card-6-6';
+        break;
+      case 8:
+        canvas.className = 'canvas-8-8';
+        this.container.className = 'card-8-8';
+        break;
+      default:
+        canvas.className = 'canvas-4-4';
+        this.container.className = 'card-4-4';
+        break;
+    }
     const imageWidth = packList[this.packNumber].imageWidth;
     const imageHight = packList[this.packNumber].imageHight;
     const imagesInRow = packList[this.packNumber].imagesInRow;
-    canvas.width = 100;
-    canvas.height = 115;
+    canvas.width = 150;
+    canvas.height = 150;
     const ctx = canvas.getContext('2d');
     const image = document.createElement('img');
-    image.src = this.imageUrl;
+    image.src = topCard;
     image.addEventListener('load', () => {
-      ctx?.drawImage(image, -250, -250, imageWidth, imageHight, 0, 0, 100, 115);
+      ctx?.drawImage(image, 5, 5, imageWidth, imageHight, 0, 0, 150, 150);
     })
     this.container.append(canvas);
     cardToInvisible?.replaceWith(this.container);
