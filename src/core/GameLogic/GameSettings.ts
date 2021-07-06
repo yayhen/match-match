@@ -1,4 +1,5 @@
 class GameSettings {
+  public timeoutId: NodeJS.Timeout;
   private imagesPack: string;
   private difficunity: number;
   private gameEnabled: boolean;
@@ -9,6 +10,7 @@ class GameSettings {
   };
 
   constructor() {
+    this.timeoutId = setTimeout(() => {}, 5000);
     this.imagesPack = 'animals';
     this.difficunity = 4;
     this.gameEnabled = false;

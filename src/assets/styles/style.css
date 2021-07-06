@@ -159,9 +159,16 @@ main {
   margin: 10px;
 }
 
+.start-stop-game {
+  color: dodgerblue;
+  box-shadow:  0 0 10px rgba(0,0,0,0.5);
+  margin: 10px;
+}
+
 .card-container {
   /* width: 1000px; */
   /* height: 100%; */
+  margin-left: 200px;
   background: Gainsboro;
 }
 
@@ -234,11 +241,17 @@ canvas {
 }
 
 .timer {
-  position: fixed;
+  position: relative;
   top: 10%;
-  left: 50%;
-  background: darkcyan;
-  color: white;
+  left: 30%;
+  width: 200px;
+  height: 80px;
+  font-size: xx-large;
+  text-align: center;
+  line-height: 75px;
+  background: white;
+  color: DarkSlateGrey;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .new-user-modal{

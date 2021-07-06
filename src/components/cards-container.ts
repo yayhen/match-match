@@ -19,6 +19,8 @@ class CardsContainer {
     this.cards = [[]];
     this.timer = new Timer(this);
     this.container.append(this.timer.render());
+    
+    
     this.game = new Game({x: App.gameSettings.getDifficunity(), y: App.gameSettings.getDifficunity()});
   }
 

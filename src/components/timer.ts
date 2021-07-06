@@ -1,3 +1,4 @@
+import App from "../pages/app";
 import CardsContainer from "./cards-container";
 
 class Timer {
@@ -24,8 +25,10 @@ class Timer {
         }
       }
     }
-    this.seconds = 5;
+    this.seconds = 30;
+    clearInterval(App.gameSettings.timeoutId);
     this.interval = setInterval(() => {
+      console.log(this);
       if(this.prepareToGame) {
         this.seconds -= 1;
         this.update();
@@ -39,6 +42,7 @@ class Timer {
         this.update();
       }
     }, 1000);
+    App.gameSettings.timeoutId = this.interval;
     this.timerIsRun = true;
   }
 
@@ -46,7 +50,11 @@ class Timer {
     let timerSeconds: number = this.seconds % 60;
     let timerMinutes: number = (this.seconds - timerSeconds) / 60;
     let timerContainer = document.getElementsByClassName('timer');
-    timerContainer[0].innerHTML = `${timerMinutes}:${timerSeconds}`;
+    if (timerSeconds <= 9) {
+      timerContainer[0].innerHTML = `${timerMinutes}:0${timerSeconds}`;
+    } else {
+      timerContainer[0].innerHTML = `${timerMinutes}:${timerSeconds}`;
+    }
     timerContainer[0].replaceWith(document.getElementsByClassName('timer')[0])
   }
 

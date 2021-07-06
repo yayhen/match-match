@@ -25,17 +25,6 @@ abstract class Page {
     let linksContainer = document.createElement('div');
     linksContainer.className = 'links';
 
-
-    const linkGame = document.createElement('a');
-    linkGame.innerText = 'game';
-    linkGame.href = '#game';
-    if(text === 'Game') {
-      linkGame.style.background = 'SteelBlue';
-    }
-    if(App.gameSettings.getGameEnabled()) {
-      linksContainer.append(linkGame);
-    }
-
     const linkSettings = document.createElement('a');
     let settingsLogo = document.createElement('div');
     settingsLogo.className = 'settings-logo';
@@ -81,7 +70,26 @@ abstract class Page {
       this.container.append(newUser.render());
     }
 
-    header.append(newUserButton);
+    let startStopGameButton = document.createElement('button');
+    startStopGameButton.className = 'start-stop-game';
+    if(window.location.hash === '#game') {
+      startStopGameButton.innerText = 'STOP GAME';
+    } else {
+      startStopGameButton.innerText = 'START GAME';
+    }
+    startStopGameButton.onclick = () => {
+      if(window.location.hash === '#game') {
+        window.location.hash = '#about';
+      } else {
+        window.location.hash = '#game';
+      }
+    }
+
+    if(App.gameSettings.getGameEnabled()) {
+      header.append(startStopGameButton);
+    } else {
+      header.append(newUserButton);
+    }
 
     return header;
   }

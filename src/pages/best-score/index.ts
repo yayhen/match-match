@@ -22,7 +22,7 @@ class BestScores extends Page {
         return b.score - a.score;
     });
     const maxVisibeScores: number = 10;
-    let visibleScores: number = 0;
+    let visibleScores: number = 1;
     hiScores.forEach(item => {
       if(visibleScores <= maxVisibeScores) {
         let recordContainer = document.createElement('div');
@@ -40,12 +40,7 @@ class BestScores extends Page {
         score.innerHTML = `Score: <span>${item.score}</span>`;
         recordContainer.append(nameSurnameEmail, score);
         main[0].append(recordContainer);
-
-
-        // main[0].append(JSON.stringify(item));
-        // visibleScores += 1;
-        // let tab = document.createElement('br');
-        // main[0].append(tab);
+        visibleScores += 1;
       }
     });
     if(hiScores.length === 0) {
