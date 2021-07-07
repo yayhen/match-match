@@ -94,9 +94,8 @@ abstract class Page {
     return header;
   }
 
-  protected createMain(text: string) {
+  protected createMain() {
     const mainText = document.createElement('main');
-    mainText.innerText = text;
     return mainText;
   }
 

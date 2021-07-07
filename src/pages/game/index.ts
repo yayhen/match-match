@@ -9,7 +9,7 @@ class Game extends Page {
 
   render() {
     const header = this.createHeader('Game');
-    const main = this.createMain('good luck!');
+    const main = this.createMain();
     const cardsContainer = new CardsContainer({x: App.gameSettings.getDifficunity(), y: App.gameSettings.getDifficunity()});
     cardsContainer.addCardsToContainer();
     main.append(cardsContainer.render());

@@ -7,8 +7,9 @@ class Congradulation {
   constructor(score: number) {
     this.container = document.createElement('div');
     this.container.className = 'congradulation';
+    this.container.innerText = `Congradulations! You scored ${score} points`;
     let buttonOK = document.createElement('button');
-    this.container.innerText = `Great job! You scored ${score} points`;
+    buttonOK.className = 'congradulation-button';
     buttonOK.innerText = 'OK'
     buttonOK.onclick = () => {
       let modalClose = document.getElementsByClassName('congradulation');

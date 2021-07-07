@@ -172,7 +172,19 @@ main {
   background: Gainsboro;
 }
 
+@keyframes show-card {
+  from {
+    height: 0px;
+    margin-bottom: 30px;
+  }
+  to {
+    height: 100px;
+    margin-bottom: 0px;
+  }
+}
+
 .card {
+  animation: show-card 0.2s;
   position: relative;
   width: 9vw;
   height: 9vw;  
@@ -183,6 +195,7 @@ main {
 }
 
 .card-4-4 {
+  animation: show-card 0.2s;
   position: relative;
   width: 9vw;
   height: 9vw; 
@@ -193,6 +206,7 @@ main {
 }
 
 .card-6-6 {
+  animation: show-card 0.2s;
   position: relative;
   width: 6vw;
   height: 6vw; 
@@ -203,6 +217,7 @@ main {
 }
 
 .card-8-8 {
+  animation: show-card 0.2s;
   position: relative;
   width: 4vw;
   height: 4vw; 
@@ -213,31 +228,51 @@ main {
 }
 
 canvas {
+  animation: show-card 0.2s;
   width: 9vw;
   height: 9vw;
 }
 
 .canvas-4-4 {
+  animation: show-card 0.2s;
+  animation: show-card 0.2s;
   width: 9vw;
   height: 9vw;
 }
 
 .canvas-6-6 {
+  animation: show-card 0.2s;
   width: 6vw;
   height: 6vw;
 }
 
 .canvas-8-8 {
+  animation: show-card 0.2s;
   width: 4vw;
   height: 4vw;
 }
 
 .congradulation {
+  z-index: 5;
+  text-align: center;
   position: fixed;
+  width: 50%;
+  height: max-content;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: darkcyan;
+  background: white
+}
+
+.congradulation-button {
+  color: white;
+  background: dodgerblue;
+  display: block;
+  margin-left: 50%;
+  margin-right: auto;
+  line-height: 50px;
+  width: 100px;
+  border-radius: 5px;
 }
 
 .timer {

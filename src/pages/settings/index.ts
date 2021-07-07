@@ -6,7 +6,7 @@ class Settings extends Page {
     super(id)
   }
 
-  protected createMain(text: string) {
+  protected createMain() {
     const mainText = document.createElement('main');
     let head = document.createElement('h3');
     head.innerText = 'Game cards';
@@ -56,7 +56,7 @@ class Settings extends Page {
 
   render() {
     const header = this.createHeader('Settings');
-    const main = this.createMain('settings of game');
+    const main = this.createMain();
     //const footer = this.createFooter('powered by my');
     this.container.append(header, main);
     return this.container;

@@ -6,7 +6,7 @@ class BestScores extends Page {
     super(id)
   }
 
-  protected createMain(text: string) {
+  protected createMain() {
     const mainText = document.createElement('main');
     //mainText.innerText = text;
     Database.getScores();
@@ -51,7 +51,7 @@ class BestScores extends Page {
 
   render() {
     const header = this.createHeader('Best scores');
-    const main = this.createMain('leaders in match');
+    const main = this.createMain();
     //const footer = this.createFooter('powered by my');
     this.container.append(header, main);
     return this.container;

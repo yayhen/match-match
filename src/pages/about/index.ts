@@ -27,7 +27,7 @@ class AboutGame extends Page {
     return howToPlay;
   }
 
-  protected createMain(text: string) {
+  protected createMain() {
     const mainContainer = document.createElement('main');
     let aboutHead = document.createElement('h3');
     aboutHead.className = 'about-head'
@@ -54,7 +54,7 @@ class AboutGame extends Page {
     const textAbout: string = 'The playing field consists of cards with different patterns on the back.  \
     Before the start of the game session, the player is shown the location of all paired cards, after 30 seconds they are hidden. \
     The victory is counted when all pairs of cards are found.'
-    const main = this.createMain(textAbout);
+    const main = this.createMain();
     //const footer = this.createFooter('powered by my');
     this.container.append(header, main);
     return this.container;
