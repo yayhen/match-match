@@ -57,6 +57,7 @@ class AboutGame extends Page {
     const main = this.createMain();
     //const footer = this.createFooter('powered by my');
     this.container.append(header, main);
+    window.location.hash = '#about';
     return this.container;
   }
 }
