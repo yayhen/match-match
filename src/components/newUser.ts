@@ -121,14 +121,14 @@ class NewUser {
           lastName: this.newUserData.lastName,
           email: this.newUserData.email
         });
+        App.gameSettings.setCurrentPlayer({
+          firstName: this.newUserData.firstName,
+          lastName: this.newUserData.lastName,
+          email: this.newUserData.email
+        });
+        App.gameSettings.setGameEnabled(true);
+        App.renderNewPage('about');
       }
-      App.gameSettings.setCurrentPlayer({
-        firstName: this.newUserData.firstName,
-        lastName: this.newUserData.lastName,
-        email: this.newUserData.email
-      });
-      App.gameSettings.setGameEnabled(true);
-      App.renderNewPage('about');
     }
 
     let cancelButton = document.createElement('button');

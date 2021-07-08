@@ -65,7 +65,6 @@ class Database {
       }
     };
     
-
     request.onupgradeneeded = function(event) {
       var db = request.result;
       if(!db.objectStoreNames.contains('accounts')) {
@@ -74,7 +73,7 @@ class Database {
       if(!db.objectStoreNames.contains('scores')) {
         var objectStore2 = db.createObjectStore("scores", { autoIncrement: true});
       }
-      //console.log('upgrade', db);
+      console.log('upgrade', db);
     };
   }
 
@@ -123,6 +122,7 @@ class Database {
   static getScores() {
     var hiScores;
     var db: IDBDatabase;
+    
     var request = window.indexedDB.open("Yayhen", 1);
     
     request.onerror = function(err) {
@@ -130,16 +130,22 @@ class Database {
     };
     request.onsuccess = function() {
       db = request.result;
-      var transaction = db.transaction(["scores"], "readonly");
-      var objectStore = transaction.objectStore("scores");
-      
-      var ob: IDBRequest<any[]> = objectStore.getAll();
-      ob.onsuccess = function() {
-        hiScores = ob.result;
-        BestScores.highScoresRender(hiScores);
+      try {
+        var transaction = db.transaction(["scores"], "readonly");
+        var objectStore = transaction.objectStore("scores");
+        var ob: IDBRequest<any[]> = objectStore.getAll();
+        ob.onsuccess = function() {
+         hiScores = ob.result;
+         BestScores.highScoresRender(hiScores);
+        }
+      } catch {
+        indexedDB.deleteDatabase('Yayhen');
+        BestScores.highScoresRender([]);
       }
-
+      
     }
+    
+    
   }
 
 }

@@ -45,7 +45,7 @@ class BestScores extends Page {
     });
     if(hiScores.length === 0) {
       let main = document.getElementsByTagName('main');
-      main[0].innerText = 'Еhe list of records is empty';
+      main[0].innerText = 'No games have been played';
     }
   }
 
