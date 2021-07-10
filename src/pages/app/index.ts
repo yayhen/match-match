@@ -42,8 +42,6 @@ class App {
     }
   }
 
-  
-
   private routeChangeHandler() {
     window.addEventListener('hashchange', () => {
       const route = window.location.hash.slice(1);

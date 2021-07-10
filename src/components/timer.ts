@@ -28,7 +28,6 @@ class Timer {
     this.seconds = 30;
     clearInterval(App.gameSettings.timeoutId);
     this.interval = setInterval(() => {
-      console.log(this);
       if(this.prepareToGame) {
         this.seconds -= 1;
         this.update();

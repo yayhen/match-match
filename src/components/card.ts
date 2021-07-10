@@ -1,5 +1,4 @@
 import Game from "../core/GameLogic/game";
-import GameSettings from "../core/GameLogic/GameSettings";
 import App from "../pages/app";
 import CardsContainer from "./cards-container";
 import Filter from "./filter";
@@ -66,11 +65,11 @@ class Card {
         this.imageUrl = animalImagesUrl;
         this.packNumber = 0;
     }
-    this.makeKardImageVisible();
     this.openedCard = true; 
     this.game = game;
     this.cardPosition = cardPosition;
     this.cardsContainer = cardsContainer;
+    this.makeKardImageVisible();
     if(game.openedCards[cardPosition.i][cardPosition.j]===false) {
       this.openedCard = false;
       this.makeCardImageInvisible();
@@ -125,14 +124,13 @@ class Card {
       ctx?.drawImage(image, offsetX, offsetY, imageWidth, imageHight, 0, 0, 100, 115);
     })
     this.container.append(canvas);
-    let cardToInvisible = document.getElementById(this.cardId);
-    cardToInvisible?.replaceWith(this.container);
+    let cardToReplace = document.getElementById(this.cardId);
+    cardToReplace?.replaceWith(this.container);
     this.openedCard = true;
     this.render();
   }
 
   makeCardImageInvisible(): void {
-    let cardToInvisible = document.getElementById(this.cardId);
     this.container = document.createElement('div');
     this.container.className = 'card';
     this.container.id = this.cardId;
@@ -168,14 +166,15 @@ class Card {
       ctx?.drawImage(image, 5, 5, imageWidth, imageHight, 0, 0, 150, 150);
     })
     this.container.append(canvas);
-    cardToInvisible?.replaceWith(this.container);
+    let cardToReplace = document.getElementById(this.cardId);
+    cardToReplace?.replaceWith(this.container);
     this.openedCard = false;
     this.render();
   }
 
   cardClickHandler(): void {
-    const isWinCard = this.game.winCards[this.cardPosition.i][this.cardPosition.j];
-    if(this.openedCard === true && !isWinCard) {
+    const itIsWinCard = this.game.winCards[this.cardPosition.i][this.cardPosition.j];
+    if(this.openedCard && ! itIsWinCard) {
       this.game.openedCards[this.cardPosition.i][this.cardPosition.j] = false;
       this.makeCardImageInvisible();
       return;

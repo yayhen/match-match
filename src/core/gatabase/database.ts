@@ -59,9 +59,8 @@ class Database {
       request2.onerror = function() {
         console.log("Error:", request2);
       }
-   
       request2.onsuccess = function() {
-        //console.log("record success", request2);
+        
       }
     };
     
@@ -142,12 +141,8 @@ class Database {
         indexedDB.deleteDatabase('Yayhen');
         BestScores.highScoresRender([]);
       }
-      
     }
-    
-    
   }
-
 }
 
 export default Database

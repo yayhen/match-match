@@ -13,8 +13,7 @@ class Game extends Page {
     const cardsContainer = new CardsContainer({x: App.gameSettings.getDifficunity(), y: App.gameSettings.getDifficunity()});
     cardsContainer.addCardsToContainer();
     main.append(cardsContainer.render());
-    const footer = this.createFooter('powered by my');
-    this.container.append(header, main, footer);
+    this.container.append(header, main);
     return this.container;
   }
 }

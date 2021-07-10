@@ -114,8 +114,7 @@ a {
 
 main {
   width: 1000px;
-  margin-left: 200px;
-  margin-bottom: 50px;
+  margin: 0 auto;
   padding: 50px;
   background: Gainsboro;
   color: DarkSlateGrey;
@@ -166,9 +165,8 @@ main {
 }
 
 .card-container {
-  /* width: 1000px; */
-  /* height: 100%; */
-  margin-left: 200px;
+  text-align: center;
+  margin: 0 auto;
   background: Gainsboro;
 }
 
@@ -179,6 +177,17 @@ main {
   }
   to {
     height: 100px;
+    margin-bottom: 0px;
+  }
+}
+
+@keyframes show-card-small {
+  from {
+    height: 0px;
+    margin-bottom: 30px;
+  }
+  to {
+    height: 50px;
     margin-bottom: 0px;
   }
 }
@@ -206,7 +215,7 @@ main {
 }
 
 .card-6-6 {
-  animation: show-card 0.2s;
+  animation: show-card-small 0.2s;
   position: relative;
   width: 6vw;
   height: 6vw; 
@@ -217,7 +226,7 @@ main {
 }
 
 .card-8-8 {
-  animation: show-card 0.2s;
+  animation: show-card-small 0.2s;
   position: relative;
   width: 4vw;
   height: 4vw; 
@@ -241,13 +250,13 @@ canvas {
 }
 
 .canvas-6-6 {
-  animation: show-card 0.2s;
+  animation: show-card-small 0.2s;
   width: 6vw;
   height: 6vw;
 }
 
 .canvas-8-8 {
-  animation: show-card 0.2s;
+  animation: show-card-small 0.2s;
   width: 4vw;
   height: 4vw;
 }
@@ -277,10 +286,10 @@ canvas {
 
 .timer {
   position: relative;
-  top: 10%;
-  left: 30%;
-  width: 200px;
-  height: 80px;
+  top: 5%;
+  left: 45%;
+  width: 10%;
+  height: 4%;
   font-size: xx-large;
   text-align: center;
   line-height: 75px;

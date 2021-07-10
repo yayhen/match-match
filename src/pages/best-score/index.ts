@@ -8,7 +8,6 @@ class BestScores extends Page {
 
   protected createMain() {
     const mainText = document.createElement('main');
-    //mainText.innerText = text;
     Database.getScores();
     return mainText;
   }
@@ -52,7 +51,6 @@ class BestScores extends Page {
   render() {
     const header = this.createHeader('Best scores');
     const main = this.createMain();
-    //const footer = this.createFooter('powered by my');
     this.container.append(header, main);
     return this.container;
   }
