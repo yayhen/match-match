@@ -1,22 +1,27 @@
-import Timer from "../../components/timer";
+import Timer from '../../components/timer';
 
 class Game {
   public gameField: number[][];
+
   public openedCards: boolean[][];
+
   public winCards: boolean[][];
+
   public score: number;
+
   public compares: number;
+
   public incorrectCompares: number;
 
-  constructor(difficunity: {x: number, y: number}) {
-    this.gameField = [[]]
+  constructor(difficunity: { x: number, y: number }) {
+    this.gameField = [[]];
     this.openedCards = [[]];
     this.winCards = [[]];
-    for(let i=0; i<difficunity.x; i++) {
+    for (let i = 0; i < difficunity.x; i++) {
       this.gameField[i] = [];
       this.openedCards[i] = [];
-      this.winCards[i] = []
-      for(let j=0; j<difficunity.y; j++) {
+      this.winCards[i] = [];
+      for (let j = 0; j < difficunity.y; j++) {
         this.gameField[i][j] = 0;
         this.openedCards[i][j] = false;
         this.winCards[i][j] = false;
@@ -30,19 +35,19 @@ class Game {
   fillRandomCardsInTable(): void {
     let cardsBeforeRandomize: number[];
     cardsBeforeRandomize = [];
-    for(let i=1; i<=this.gameField.length**2 / 2; i++) {
+    for (let i = 1; i <= this.gameField.length ** 2 / 2; i++) {
       cardsBeforeRandomize.push(i);
       cardsBeforeRandomize.push(i);
     }
-    
+
     let randomCard: number;
     this.gameField.forEach((item, index) => {
       item.forEach((itm, ind) => {
-        randomCard = Math.floor(Math.random()*cardsBeforeRandomize.length);
+        randomCard = Math.floor(Math.random() * cardsBeforeRandomize.length);
         this.gameField[index][ind] = cardsBeforeRandomize[randomCard];
         cardsBeforeRandomize.splice(randomCard, 1);
-      })
-    })
+      });
+    });
   }
 
   getCard(x: number, y: number): number {
@@ -50,25 +55,25 @@ class Game {
   }
 
   visibleAllCards() {
-    for(let i=0; i<this.openedCards.length; i++) {
-      for(let j=0; j<this.openedCards[0].length; j++) {
+    for (let i = 0; i < this.openedCards.length; i++) {
+      for (let j = 0; j < this.openedCards[0].length; j++) {
         this.openedCards[i][j] = true;
       }
     }
   }
 
   invisibleAllCards() {
-    for(let i=0; i<this.openedCards.length; i++) {
-      for(let j=0; j<this.openedCards[0].length; j++) {
+    for (let i = 0; i < this.openedCards.length; i++) {
+      for (let j = 0; j < this.openedCards[0].length; j++) {
         this.openedCards[i][j] = false;
       }
     }
   }
 
   invisibleAllExceptWinCards() {
-    for(let i=0; i<this.openedCards.length; i++) {
-      for(let j=0; j<this.openedCards[0].length; j++) {
-        if(this.winCards[i][j]===false) {
+    for (let i = 0; i < this.openedCards.length; i++) {
+      for (let j = 0; j < this.openedCards[0].length; j++) {
+        if (this.winCards[i][j] === false) {
           this.openedCards[i][j] = false;
         }
       }
@@ -76,10 +81,9 @@ class Game {
   }
 
   calculateScore(playedSeconds: number): number {
-    let score = (this.compares - this.incorrectCompares) * 100 - playedSeconds*10;
-    return score>0 ? score: 0;
+    const score = (this.compares - this.incorrectCompares) * 100 - playedSeconds * 10;
+    return score > 0 ? score : 0;
   }
-
 }
 
 export default Game;

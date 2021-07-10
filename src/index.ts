@@ -1,6 +1,5 @@
 import App from './pages/app';
-import './assets/styles/style.css'
-import Game from './core/GameLogic/game';
+import './assets/styles/style.css';
 
 const app = new App();
 app.run();

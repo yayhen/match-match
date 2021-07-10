@@ -18,9 +18,9 @@ module.exports = {
     rules: [
       { test: /\.txt$/, use: 'raw-loader' },
       {
-          test: /\.tsx?$/,
-          use: 'ts-loader',
-          exclude: /node_modules/
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/i,
@@ -30,7 +30,7 @@ module.exports = {
             options: { injectType: 'singletonStyleTag' },
           },
           'css-loader',
-          
+
         ],
       },
       {
@@ -42,15 +42,15 @@ module.exports = {
             options: {
               bypassOnDebug: true, // webpack@1.x
               disable: true, // webpack@2.x and newer
-              outputPath: '/src/assets/'
+              outputPath: '/src/assets/',
             },
           },
         ],
-      }
+      },
     ],
   },
   plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
   resolve: {
-    extensions: [ ".tsx", ".ts", ".js" ]
+    extensions: ['.tsx', '.ts', '.js'],
   },
 };

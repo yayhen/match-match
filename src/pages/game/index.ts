@@ -1,21 +1,21 @@
 import CardsContainer from '../../components/cards-container';
-import Page from './../../core/templates/page'
+import App from '../app';
+import Page from '../../core/templates/page';
 
 class Game extends Page {
   constructor(id: string) {
-    super(id)
+    super(id);
   }
 
   render() {
     const header = this.createHeader('Game');
-    const main = this.createMain('good luck!');
-    const cardsContainer = new CardsContainer({x:4, y: 4});
+    const main = this.createMain();
+    const cardsContainer = new CardsContainer({ x: App.gameSettings.getDifficunity(), y: App.gameSettings.getDifficunity() });
     cardsContainer.addCardsToContainer();
     main.append(cardsContainer.render());
-    const footer = this.createFooter('powered by my');
-    this.container.append(header, main, footer);
+    this.container.append(header, main);
     return this.container;
   }
 }
 
-export default Game
+export default Game;
