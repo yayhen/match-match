@@ -3,11 +3,13 @@ import Page from '../../core/templates/page';
 import BestScores from '../best-score';
 import Game from '../game';
 import Settings from '../settings';
-import AboutGame from './../about'
+import AboutGame from '../about';
 
 class App {
   private static container: HTMLElement = document.body;
+
   private aboutPage: AboutGame;
+
   public static gameSettings: GameSettings = new GameSettings();
 
   constructor() {
@@ -26,7 +28,7 @@ class App {
         page = new Game(id);
         break;
       case 'best-scores':
-        page = new BestScores(id)
+        page = new BestScores(id);
         break;
       case 'settings':
         page = new Settings(id);
@@ -46,12 +48,12 @@ class App {
     window.addEventListener('hashchange', () => {
       const route = window.location.hash.slice(1);
       App.renderNewPage(route);
-    })
+    });
   }
 
   run() {
     App.renderNewPage('about');
     this.routeChangeHandler();
   }
-}  
-export default App
+}
+export default App;

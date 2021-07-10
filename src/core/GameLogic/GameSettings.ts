@@ -1,8 +1,12 @@
 class GameSettings {
   public timeoutId: NodeJS.Timeout;
+
   private imagesPack: string;
+
   private difficunity: number;
+
   private gameEnabled: boolean;
+
   private currentPlayer: {
     firstName: string,
     lastName: string,
@@ -18,7 +22,7 @@ class GameSettings {
       firstName: '',
       lastName: '',
       email: '',
-    }
+    };
   }
 
   setImagesPack(pack: string):void {
@@ -45,7 +49,7 @@ class GameSettings {
     return this.gameEnabled;
   }
 
-  setCurrentPlayer(player: {firstName: string, lastName: string, email: string}):void {
+  setCurrentPlayer(player: { firstName: string, lastName: string, email: string }):void {
     this.currentPlayer = player;
   }
 
@@ -54,4 +58,4 @@ class GameSettings {
   }
 }
 
-export default GameSettings
+export default GameSettings;

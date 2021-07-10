@@ -1,94 +1,90 @@
-import BestScores from "../../pages/best-score";
+import BestScores from '../../pages/best-score';
 
 class Database {
   static openDatabase(score: number) {
-    var db: IDBDatabase;
-    var request = window.indexedDB.open("Yayhen", 1);
+    let db: IDBDatabase;
+    const request = window.indexedDB.open('Yayhen', 1);
 
-    request.onerror = function(err) {
-      console.log('error', err);
+    request.onerror =  () => {
+      
     };
 
-    request.onsuccess = function(e) {
+    request.onsuccess = () => {
       db = request.result;
-      console.log('success', db);
-      var transaction = db.transaction('scores', 'readwrite');
-      var store = transaction.objectStore('scores');
-      var newScoreRecord = {
-        score: score,
+      const transaction = db.transaction('scores', 'readwrite');
+      const store = transaction.objectStore('scores');
+      const newScoreRecord = {
+        score,
         date: new Date(),
-      }
-      console.log(newScoreRecord);
-      var request2 = store.add(newScoreRecord);
-      request2.onerror = function() {
-        console.log("Error:", request2);
-      }
-   
-      request2.onsuccess = function() {
-        console.log("record success", request2);
-      }
-    };
-    
+      };
+      const request2 = store.add(newScoreRecord);
+      request2.onerror = function () {
+        console.log('Error:', request2);
+      };
 
-    request.onupgradeneeded = function(event) {
-      var db = request.result;
-      if(!db.objectStoreNames.contains('accounts')) {
-        var objectStore1 = db.createObjectStore("accounts", { autoIncrement: true});
-      }
-      if(!db.objectStoreNames.contains('scores')) {
-        var objectStore2 = db.createObjectStore("scores", { autoIncrement: true});
-      }
-      console.log('upgrade', db);
-    };
-  }
-
-  static addNewPlayer(player: {firstName: string, lastName: string, email: string}) {
-    var db: IDBDatabase;
-    var request = window.indexedDB.open("Yayhen", 1);
-
-    request.onerror = function(err) {
-      console.log('error', err);
-    };
-
-    request.onsuccess = function(e) {
-      db = request.result;
-      var transaction = db.transaction('accounts', 'readwrite');
-      var store = transaction.objectStore('accounts');
-      var newPlayerRecord = player;
-      var request2 = store.add(newPlayerRecord);
-      request2.onerror = function() {
-        console.log("Error:", request2);
-      }
-      request2.onsuccess = function() {
+      request2.onsuccess = () => {
         
-      }
+      };
     };
-    
-    request.onupgradeneeded = function(event) {
-      var db = request.result;
-      if(!db.objectStoreNames.contains('accounts')) {
-        var objectStore1 = db.createObjectStore("accounts", { autoIncrement: true});
+
+    request.onupgradeneeded = () => {
+      const db = request.result;
+      if (!db.objectStoreNames.contains('accounts')) {
+        const objectStore1 = db.createObjectStore('accounts', { autoIncrement: true });
       }
-      if(!db.objectStoreNames.contains('scores')) {
-        var objectStore2 = db.createObjectStore("scores", { autoIncrement: true});
+      if (!db.objectStoreNames.contains('scores')) {
+        const objectStore2 = db.createObjectStore('scores', { autoIncrement: true });
       }
-      console.log('upgrade', db);
+      
     };
   }
 
-  static recordScore(player: {firstName: string, lastName: string, email: string}, score: number) {
-    var db: IDBDatabase;
-    var request = window.indexedDB.open("Yayhen", 1);
+  static addNewPlayer(player: { firstName: string, lastName: string, email: string }) {
+    let db: IDBDatabase;
+    const request = window.indexedDB.open('Yayhen', 1);
 
-    request.onerror = function(err) {
-      console.log('error', err);
+    request.onerror = function (err) {
     };
 
-    request.onsuccess = function(e) {
+    request.onsuccess = function (e) {
       db = request.result;
-      var transaction = db.transaction('scores', 'readwrite');
-      var store = transaction.objectStore('scores');
-      var newPlayerRecord: {
+      const transaction = db.transaction('accounts', 'readwrite');
+      const store = transaction.objectStore('accounts');
+      const newPlayerRecord = player;
+      const request2 = store.add(newPlayerRecord);
+      request2.onerror = function () {
+        
+      };
+      request2.onsuccess = function () {
+
+      };
+    };
+
+    request.onupgradeneeded = function (event) {
+      const db = request.result;
+      if (!db.objectStoreNames.contains('accounts')) {
+        const objectStore1 = db.createObjectStore('accounts', { autoIncrement: true });
+      }
+      if (!db.objectStoreNames.contains('scores')) {
+        const objectStore2 = db.createObjectStore('scores', { autoIncrement: true });
+      }
+      
+    };
+  }
+
+  static recordScore(player: { firstName: string, lastName: string, email: string }, score: number) {
+    let db: IDBDatabase;
+    const request = window.indexedDB.open('Yayhen', 1);
+
+    request.onerror = function (err) {
+      
+    };
+
+    request.onsuccess = function (e) {
+      db = request.result;
+      const transaction = db.transaction('scores', 'readwrite');
+      const store = transaction.objectStore('scores');
+      let newPlayerRecord: {
         firstName: string,
         lastName: string,
         email: string,
@@ -98,51 +94,51 @@ class Database {
         firstName: player.firstName,
         lastName: player.lastName,
         email: player.email,
-        score: score,
-      }
-      var request2 = store.add(newPlayerRecord);
-      request2.onerror = function() {
-        console.log("Error:", request2);
-      }
-   
-      request2.onsuccess = function() {
+        score,
+      };
+      const request2 = store.add(newPlayerRecord);
+      request2.onerror = function () {
         
-      }
+      };
+
+      request2.onsuccess = function () {
+
+      };
     };
-    
-    request.onupgradeneeded = function(event) {
-      var db = request.result;
-      if(!db.objectStoreNames.contains('scores')) {
-        var objectStore1 = db.createObjectStore("scores", { autoIncrement: true});
+
+    request.onupgradeneeded = function (event) {
+      const db = request.result;
+      if (!db.objectStoreNames.contains('scores')) {
+        const objectStore1 = db.createObjectStore('scores', { autoIncrement: true });
       }
     };
   }
 
   static getScores() {
-    var hiScores;
-    var db: IDBDatabase;
-    
-    var request = window.indexedDB.open("Yayhen", 1);
-    
-    request.onerror = function(err) {
-      console.log('error', err);
+    let hiScores;
+    let db: IDBDatabase;
+
+    const request = window.indexedDB.open('Yayhen', 1);
+
+    request.onerror = function (err) {
+      
     };
-    request.onsuccess = function() {
+    request.onsuccess = function () {
       db = request.result;
       try {
-        var transaction = db.transaction(["scores"], "readonly");
-        var objectStore = transaction.objectStore("scores");
-        var ob: IDBRequest<any[]> = objectStore.getAll();
-        ob.onsuccess = function() {
-         hiScores = ob.result;
-         BestScores.highScoresRender(hiScores);
-        }
+        const transaction = db.transaction(['scores'], 'readonly');
+        const objectStore = transaction.objectStore('scores');
+        const ob: IDBRequest<any[]> = objectStore.getAll();
+        ob.onsuccess = function () {
+          hiScores = ob.result;
+          BestScores.highScoresRender(hiScores);
+        };
       } catch {
         indexedDB.deleteDatabase('Yayhen');
         BestScores.highScoresRender([]);
       }
-    }
+    };
   }
 }
 
-export default Database
+export default Database;
